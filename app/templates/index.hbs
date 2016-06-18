@@ -1,0 +1,7 @@
+<h1>Lists</h1>
+
+{{#each model as |list|}}
+  {{card-list list=list isEditing="false"}}
+{{/each}}
+
+<a href="#" {{action 'addList'}}>Add a List</a>
