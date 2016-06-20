@@ -27,4 +27,5 @@ export default function() {
   this.post('/lists');
   this.post('/cards');
   this.patch('/cards/:id');
+  this.del('/cards/:id');
 }

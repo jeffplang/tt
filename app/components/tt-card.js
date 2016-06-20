@@ -3,8 +3,9 @@ const { computed } = Ember;
 
 export default Ember.Component.extend({
   isEditing: false,
+  isConfirmingDelete: false,
   
-  shouldShowModal: computed('isEditing', 'card.isNew', function() {
+  shouldShowEditModal: computed('isEditing', 'card.isNew', function() {
     return this.get('isEditing') || this.get('card.isNew');
   }),
 
@@ -14,12 +15,30 @@ export default Ember.Component.extend({
     },
 
     save() {
-      let that = this
+      let that = this;
 
-      this.get('card').save().then(() => that.send('hideModal'));
+      this.get('card').save().then(() => {
+        that.send('hideEditModal');
+      });
     },
 
-    hideModal() {
+    delete() {
+      this.set('isConfirmingDelete', true);
+    },
+
+    confirmDelete() {
+      let that = this;
+
+      this.get('card').destroyRecord().then(() => {
+        that.set('isConfirmingDelete', false);
+      });
+    },
+
+    cancelDelete() {
+      this.set('isConfirmingDelete', false);
+    },
+
+    hideEditModal() {
       let card = this.get('card');
 
       if (card.get('isNew')) {

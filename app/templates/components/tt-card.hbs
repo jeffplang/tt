@@ -1,5 +1,7 @@
-{{#if shouldShowModal}}
-  {{#modal-dialog close="hideModal"  targetAttachment="center"}}
+{{#if shouldShowEditModal}}
+  {{#modal-dialog close="hideModal"
+                  targetAttachment="center"
+                  translucentOverlay="true"}}
     <a href="#" {{action "hideModal"}}>X</a>
     <h3>
       {{#if card.isNew}}
@@ -19,10 +21,20 @@
   {{/modal-dialog}}
 {{/if}}
 
+{{#if isConfirmingDelete}}
+  {{#modal-dialog close="cancelDelete"
+                  targetAttachment="center"
+                  translucentOverlay="true"
+                  clickOutsideToClose="false"}}
+    Are you sure?<br>
+    <button {{action "confirmDelete"}}>Yes</button>
+    <button {{action "cancelDelete"}}>No</button>
+  {{/modal-dialog}}
+{{/if}}
+
 {{#unless card.isNew}}
   <li>
-    <a href="#" {{action "edit"}}>
-      {{card.title}}
-    </a>
+    <a href="#" {{action "edit"}}>{{card.title}}</a>
+    <a href="#" {{action "delete"}}>X</a>
   </li>
 {{/unless}}
