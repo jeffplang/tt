@@ -1,5 +1,5 @@
 {{#if list.isNew}}
-  {{input classNames="list-title-input" value=list.title}}
+  {{input placeholder="Title" classNames="list-title-input" value=list.title}}
   <br>
   <button {{action "save"}}>Save</button>
   <a class="cancel" href="#" {{action "cancel"}}>cancel</a>
