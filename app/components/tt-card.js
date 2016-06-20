@@ -40,6 +40,10 @@ export default Ember.Component.extend({
       this.set('isConfirmingDelete', false);
     },
 
+    cancelCreate() {
+      this.get('card').destroyRecord();
+    },
+    
     hideEditModal() {
       let card = this.get('card');
 

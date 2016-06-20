@@ -1,21 +1,11 @@
-{{#if shouldShowEditModal}}
+{{#if isEditing}}
   {{#modal-dialog close="hideEditModal"
                   targetAttachment="center"
                   translucentOverlay="true"}}
     <a class="close-btn" href="#" {{action "hideEditModal"}}>X</a>
-    <h3>
-      {{#if card.isNew}}
-        Add
-      {{else}}
-        Edit
-      {{/if}}
-      Card
-    </h3>
-    <label>Title</label>
-    {{input value=card.title}}
+    {{input classNames="card-title-input" placeholder="Title" value=card.title}}
     <br>
-    <label>Description</label>
-    {{textarea value=card.description}}
+    {{textarea placeholder="Description" classNames="card-description-input" value=card.description}}
     <br>
     <button {{action "save"}}>Save</button>
   {{/modal-dialog}}
@@ -32,7 +22,12 @@
   {{/modal-dialog}}
 {{/if}}
 
-{{#unless card.isNew}}
+{{#if card.isNew}}
+  {{input placeholder="Title" classNames="card-title-inline-input" value=card.title}}
+  <br>
+  <button {{action "save"}}>Save</button>
+  <a href="#" {{action "cancelCreate"}} class="cancel">cancel</a>
+{{else}}
   <a href="#" {{action "edit"}}>{{card.title}}</a>
   <a class="delete-btn" href="#" {{action "delete"}}>X</a>
-{{/unless}}
+{{/if}}
