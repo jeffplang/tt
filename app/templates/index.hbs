@@ -1,7 +1,9 @@
-<h1>Lists</h1>
+<header><h1>Lists</h1></header>
 
-{{#each model as |list|}}
-  {{card-list list=list}}
-{{/each}}
+<div class="list-container">
+  {{#each model as |list|}}
+    {{card-list list=list}}
+  {{/each}}
 
-<a href="#" {{action 'addList'}}>Add a List</a>
+  <a href="#" {{action 'addList'}}>Add a List</a>
+</div>

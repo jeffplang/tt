@@ -33,8 +33,6 @@
 {{/if}}
 
 {{#unless card.isNew}}
-  <li>
-    <a href="#" {{action "edit"}}>{{card.title}}</a>
-    <a href="#" {{action "delete"}}>X</a>
-  </li>
+  <a href="#" {{action "edit"}}>{{card.title}}</a>
+  <a class="delete-btn" href="#" {{action "delete"}}>X</a>
 {{/unless}}

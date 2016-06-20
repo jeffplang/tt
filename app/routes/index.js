@@ -6,14 +6,16 @@ export default Ember.Route.extend({
       title: 'Default List'
     });
 
-    return [defaultList.save()];
+    const that = this;
+
+    return defaultList.save().then(() => {
+      return that.store.findAll('list');
+    })
   },
 
   actions: {
     addList() {
       let newList = this.store.createRecord('list');
-
-      this.get('currentModel').pushObject(newList);
     }
   }
 });

@@ -3,6 +3,7 @@ import Ember from 'ember';
 const { inject: { service } } = Ember;
 
 export default Ember.Component.extend({
+  classNames: 'card-list',
   store: service(),
 
   actions: {
@@ -14,6 +15,10 @@ export default Ember.Component.extend({
       this.get('store').createRecord('card', {
         list: this.get('list')
       });
+    },
+
+    cancel() {
+      this.get('list').destroyRecord();
     }
   }
 });
