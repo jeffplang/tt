@@ -3,4 +3,18 @@
   <button {{action "save"}}>Save</button>
 {{else}}
   <h2>{{list.title}}</h2>
+  <ul>
+    {{#each list.cards as |card|}}
+      {{#unless card.isNew}}
+        <li><a href="#" {{action 'editCard' card}}>{{card.title}}</a></li>
+      {{/unless}}
+    {{/each}}
+  </ul>
+  <a href="#" {{action 'addCard'}}>Add a card</a>
+{{/if}}
+
+{{#if isEditingCard}}
+  {{edit-card card=editingCard
+              didSave=(action "hideCardModal")
+              close=(action "hideCardModal")}}
 {{/if}}

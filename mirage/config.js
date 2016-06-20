@@ -25,6 +25,5 @@ export default function() {
   */
   this.get('/lists');
   this.post('/lists');
-  // this.get('/lists/:id');
-  // this.post('/lists/:id/cards');
+  this.post('/cards');
 }
