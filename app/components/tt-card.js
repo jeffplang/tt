@@ -1,5 +1,4 @@
 import Ember from 'ember';
-const { computed } = Ember;
 
 export default Ember.Component.extend({
   tagName: 'li',
@@ -18,7 +17,7 @@ export default Ember.Component.extend({
     cardUpdated(attrs) {
       let card = this.get('card');
 
-      this.send('hideEditModal')
+      this.send('hideEditModal');
       
       card.setProperties(attrs);
       card.save();

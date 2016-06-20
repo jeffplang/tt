@@ -12,7 +12,7 @@ export default Ember.Component.extend({
       let attrs = {
         title: this.get('title'),
         description: this.get('description')
-      }
+      };
 
       this.get('update')(attrs);
     },

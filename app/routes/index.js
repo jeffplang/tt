@@ -10,12 +10,12 @@ export default Ember.Route.extend({
 
     return defaultList.save().then(() => {
       return that.store.findAll('list');
-    })
+    });
   },
 
   actions: {
     addList() {
-      let newList = this.store.createRecord('list');
+      this.store.createRecord('list');
     }
   }
 });

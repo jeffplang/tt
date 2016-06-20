@@ -8,7 +8,7 @@ export default Ember.Component.extend({
 
   actions: {
     save() {
-      this.get('list').save()
+      this.get('list').save();
     },
 
     addCard() {
