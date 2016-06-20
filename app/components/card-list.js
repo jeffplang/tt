@@ -19,6 +19,10 @@ export default Ember.Component.extend({
 
     cancel() {
       this.get('list').destroyRecord();
+    },
+
+    deleteCard(card) {
+      card.destroyRecord();
     }
   }
 });

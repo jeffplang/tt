@@ -5,11 +5,6 @@ export default Ember.Component.extend({
   tagName: 'li',
   classNames: ['tt-card'],
   isEditing: false,
-  isConfirmingDelete: false,
-  
-  shouldShowEditModal: computed('isEditing', 'card.isNew', function() {
-    return this.get('isEditing') || this.get('card.isNew');
-  }),
 
   actions: {
     edit() {
@@ -17,27 +12,22 @@ export default Ember.Component.extend({
     },
 
     save() {
-      let that = this;
-
-      this.get('card').save().then(() => {
-        that.send('hideEditModal');
-      });
+      this.get('card').save();
     },
 
-    delete() {
-      this.set('isConfirmingDelete', true);
+    cardUpdated(attrs) {
+      let card = this.get('card');
+
+      this.send('hideEditModal')
+      
+      card.setProperties(attrs);
+      card.save();
     },
 
-    confirmDelete() {
-      let that = this;
+    cardDeleted() {
+      this.send('hideEditModal');
 
-      this.get('card').destroyRecord().then(() => {
-        that.set('isConfirmingDelete', false);
-      });
-    },
-
-    cancelDelete() {
-      this.set('isConfirmingDelete', false);
+      this.get('onDelete')(this.get('card'));
     },
 
     cancelCreate() {
@@ -45,12 +35,6 @@ export default Ember.Component.extend({
     },
     
     hideEditModal() {
-      let card = this.get('card');
-
-      if (card.get('isNew')) {
-        card.deleteRecord();
-      }
-
       this.set('isEditing', false);
     }
   }

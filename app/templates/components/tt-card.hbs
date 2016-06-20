@@ -1,25 +1,9 @@
 {{#if isEditing}}
-  {{#modal-dialog close="hideEditModal"
-                  targetAttachment="center"
-                  translucentOverlay="true"}}
-    <a class="close-btn" href="#" {{action "hideEditModal"}}>X</a>
-    {{input classNames="card-title-input" placeholder="Title" value=card.title}}
-    <br>
-    {{textarea placeholder="Description" classNames="card-description-input" value=card.description}}
-    <br>
-    <button {{action "save"}}>Save</button>
-  {{/modal-dialog}}
-{{/if}}
-
-{{#if isConfirmingDelete}}
-  {{#modal-dialog close="cancelDelete"
-                  targetAttachment="center"
-                  translucentOverlay="true"
-                  clickOutsideToClose="false"}}
-    Are you sure?<br>
-    <button {{action "confirmDelete"}}>Yes</button>
-    <button {{action "cancelDelete"}}>No</button>
-  {{/modal-dialog}}
+  {{edit-card title=(get card "title")
+              description=(get card "description")
+              update=(action "cardUpdated")
+              close=(action "hideEditModal")
+              delete=(action "cardDeleted")}}
 {{/if}}
 
 {{#if card.isNew}}
@@ -29,5 +13,4 @@
   <a href="#" {{action "cancelCreate"}} class="cancel">cancel</a>
 {{else}}
   <a href="#" {{action "edit"}}>{{card.title}}</a>
-  <a class="delete-btn" href="#" {{action "delete"}}>X</a>
 {{/if}}
