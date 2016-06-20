@@ -1,14 +1,9 @@
 import Ember from 'ember';
 
-const {
-  inject: { service },
-  computed: { notEmpty }
-} = Ember;
+const { inject: { service } } = Ember;
 
 export default Ember.Component.extend({
   store: service(),
-  editingCard: null,
-  isEditingCard: notEmpty('editingCard'),
 
   actions: {
     save() {
@@ -16,22 +11,9 @@ export default Ember.Component.extend({
     },
 
     addCard() {
-      let newCard = this.get('store').createRecord('card', {
+      this.get('store').createRecord('card', {
         list: this.get('list')
       });
-      this.set('editingCard', newCard);
-    },
-
-    editCard(card) {
-      this.set('editingCard', card);
-    },
-
-    hideCardModal() {
-      if(this.get('editingCard.isNew')) {
-        this.get('editingCard').destroyRecord();
-      }
-
-      this.set('editingCard', null);
     }
   }
 });

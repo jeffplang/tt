@@ -1,0 +1,28 @@
+{{#if shouldShowModal}}
+  {{#modal-dialog close="hideModal"  targetAttachment="center"}}
+    <a href="#" {{action "hideModal"}}>X</a>
+    <h3>
+      {{#if card.isNew}}
+        Add
+      {{else}}
+        Edit
+      {{/if}}
+      Card
+    </h3>
+    <label>Title</label>
+    {{input value=card.title}}
+    <br>
+    <label>Description</label>
+    {{textarea value=card.description}}
+    <br>
+    <button {{action "save"}}>Save</button>
+  {{/modal-dialog}}
+{{/if}}
+
+{{#unless card.isNew}}
+  <li>
+    <a href="#" {{action "edit"}}>
+      {{card.title}}
+    </a>
+  </li>
+{{/unless}}
