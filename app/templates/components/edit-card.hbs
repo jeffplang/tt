@@ -1,18 +1,20 @@
 {{#modal-dialog close=(action "close") targetAttachment="center" translucentOverlay="true"}}
   <a class="close-btn" href="#" {{action "close"}}>X</a>
-  {{input classNames="card-title-input" placeholder="Title" value=title}}
-  <br>
-  {{textarea placeholder="Description" classNames="card-description-input" value=description}}
-  <br>
-  <button {{action "update"}}>Save</button>
+  <form {{action "update" on="submit"}}>
+    {{input classNames="card-title-input" placeholder="Title" value=title}}
+    <br>
+    {{textarea placeholder="Description" classNames="card-description-input" value=description}}
+    <br>
+    <button class="save-btn" {{action "update"}}>Save</button>
 
-  <div class="edit-card-form-delete-container">
-    {{#if isConfirmingDelete}}
-      Really delete?
-      <button class="delete-confirm-btn" {{action "confirmDelete"}}>Yes</button>
-      <button class="delete-confirm-btn" {{action "cancelDelete"}}>No</button>
-    {{else}}
-      <button class="delete-btn" {{action "delete"}}>Delete</button>
-    {{/if}}
-  </div>
+    <div class="edit-card-form-delete-container">
+      {{#if isConfirmingDelete}}
+        Really delete?
+        <button class="delete-confirm-btn yes" {{action "confirmDelete"}}>Yes</button>
+        <button class="delete-confirm-btn no" {{action "cancelDelete"}}>No</button>
+      {{else}}
+        <button class="delete-btn" {{action "delete"}}>Delete</button>
+      {{/if}}
+    </div>
+  </form>
 {{/modal-dialog}}

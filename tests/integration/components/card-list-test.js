@@ -1,24 +1,20 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { make, manualSetup } from 'ember-data-factory-guy';
 
 moduleForComponent('card-list', 'Integration | Component | card list', {
-  integration: true
+  integration: true,
+
+  setup() {
+    manualSetup(this.container);
+  }
 });
 
 test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.set('list', make('list'));
 
-  this.render(hbs`{{card-list}}`);
+  this.render(hbs`{{card-list list=list}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$('h2').text().trim(), this.get('list.title'));
 
-  // Template block usage:
-  this.render(hbs`
-    {{#card-list}}
-      template block text
-    {{/card-list}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
 });
