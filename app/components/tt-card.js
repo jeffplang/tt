@@ -30,7 +30,7 @@ export default Ember.Component.extend({
     },
 
     cancelCreate() {
-      this.get('card').destroyRecord();
+      this.get('onDelete')(this.get('card'));
     },
     
     hideEditModal() {
