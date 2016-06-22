@@ -1,13 +1,12 @@
 {{#if isEditing}}
-  {{edit-card title=(unbound card.title)
-              description=(unbound card.description)
+  {{edit-card card=card
               update=(action "cardUpdated")
               close=(action "hideEditModal")
               delete=(action "cardDeleted")}}
 {{/if}}
 
 {{#if card.isNew}}
-  {{input placeholder="Title" classNameBindings=":card-title-inline-input card.isValid::invalid" value=card.title}}
+  {{input placeholder="Title" classNameBindings=":card-title-inline-input card.invalid:invalid" value=card.title}}
   <br>
   <button {{action "save"}}>Save</button>
   <a href="#" {{action "cancelCreate"}} class="cancel">cancel</a>

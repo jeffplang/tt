@@ -1,9 +1,9 @@
 {{#modal-dialog close=(action "close") targetAttachment="center" translucentOverlay="true"}}
   <a class="close-btn" href="#" {{action "close"}}>X</a>
   <form {{action "update" on="submit"}}>
-    {{input classNameBindings=":card-title-input" placeholder="Title" value=title}}
+    {{input classNameBindings=":card-title-input card.invalid:invalid" placeholder="Title" value=formTitle}}
     <br>
-    {{textarea placeholder="Description" classNames="card-description-input" value=description}}
+    {{textarea placeholder="Description" classNames="card-description-input" value=formDescription}}
     <br>
     <button class="save-btn" {{action "update"}}>Save</button>
 

@@ -19,12 +19,12 @@ export default Model.extend({
   },
   
   validate() {
-    this.get('errors').clear();
-
     if (isBlank(this.get('title'))) {
-      this.get('errors').add('title', 'Title is required');
+      this.set('invalid', true);
+    } else {
+      this.set('invalid', false);
     }
 
-    return this.get('isValid');
+    return !this.get('invalid');
   }
 });
