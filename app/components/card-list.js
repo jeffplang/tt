@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { inject: { service } } = Ember;
+const { RSVP, inject: { service } } = Ember;
 
 export default Ember.Component.extend({
   classNames: 'card-list',
@@ -23,6 +23,17 @@ export default Ember.Component.extend({
 
     deleteCard(card) {
       card.destroyRecord();
+    },
+
+    updateCard(card, attrs) {
+      card.setProperties(attrs);
+
+      return card.save()
+        .catch(() => {
+          card.rollbackAttributes();
+
+          return RSVP.reject();
+        });
     }
   }
 });

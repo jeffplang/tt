@@ -1,5 +1,5 @@
 {{#if list.isNew}}
-  {{input placeholder="Title" classNames="list-title-input" value=list.title}}
+  {{input placeholder="Title" classNameBindings=":list-title-input list.isValid::invalid" value=list.title}}
   <br>
   <button {{action "save"}}>Save</button>
   <a class="cancel" href="#" {{action "cancel"}}>cancel</a>
@@ -7,7 +7,7 @@
   <h2>{{list.title}}</h2>
   <ul>
     {{#each list.cards as |card|}}
-      {{tt-card card=card onDelete=(action 'deleteCard')}}
+      {{tt-card card=card onDelete=(action 'deleteCard') onUpdate=(action 'updateCard')}}
     {{/each}}
   </ul>
   <a href="#" {{action 'addCard'}}>Add a card</a>

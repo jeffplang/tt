@@ -15,7 +15,9 @@ export default Ember.Route.extend({
 
   actions: {
     addList() {
-      this.store.createRecord('list');
+      let list = this.store.createRecord('list');
+
+      return list;
     }
   }
 });
