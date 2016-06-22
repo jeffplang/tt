@@ -16,9 +16,7 @@ export default Ember.Component.extend({
 
     cardUpdated(attrs) {
       this.get('onUpdate')(this.get('card'), attrs)
-        .then(() => {
-          this.send('hideEditModal')
-        });
+        .then(() => this.send('hideEditModal'));
     },
 
     cardDeleted() {
