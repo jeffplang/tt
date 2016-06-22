@@ -5,19 +5,17 @@ const { computed } = Ember;
 export default Ember.Component.extend({
   classNames: ['edit-card-form'],
 
-  formTitle: computed.oneWay('card.title'),
-  formDescription: computed.oneWay('card.description'),
+  title: computed.oneWay('card.title'),
+  description: computed.oneWay('card.description'),
 
   isConfirmingDelete: false,
 
   actions: {
     update() {
-      let attrs = {
-        title: this.get('formTitle'),
-        description: this.get('formDescription')
-      };
+      let title = this.get('title');
+      let description = this.get('description');
 
-      this.get('update')(attrs);
+      this.get('update')({ title, description });
     },
 
     delete() {
