@@ -21,6 +21,22 @@ test('it renders', function(assert) {
   assert.equal(this.$().text().trim(), this.get('card.title'));
 });
 
+test('it creates a new card', function(assert) {
+  assert.expect(1);
+
+  this.set('card', Ember.Object.create({
+    isNew: true,
+    title: 'Test card',
+    save: () => assert.ok(true)
+  }));
+
+  this.render(hbs`
+    {{tt-card card=card}}
+  `);
+
+  this.$('.save-btn').click();
+});
+
 test('it cancels creating a new card', function(assert) {
   assert.expect(1);
 

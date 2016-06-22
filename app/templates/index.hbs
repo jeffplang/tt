@@ -2,7 +2,7 @@
 
 <div class="list-container">
   {{#each model as |list|}}
-    {{card-list list=list}}
+    {{card-list list=list onDelete=(action 'deleteList')}}
   {{/each}}
 
   <a href="#" {{action 'addList'}}>Add a List</a>

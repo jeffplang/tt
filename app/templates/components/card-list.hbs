@@ -1,7 +1,7 @@
 {{#if list.isNew}}
   {{input placeholder="Title" classNameBindings=":list-title-input list.invalid:invalid" value=list.title}}
   <br>
-  <button {{action "save"}}>Save</button>
+  <button class="save-btn" {{action "save"}}>Save</button>
   <a class="cancel" href="#" {{action "cancel"}}>cancel</a>
 {{else}}
   <h2>{{list.title}}</h2>

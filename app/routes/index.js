@@ -13,11 +13,13 @@ export default Ember.Route.extend({
     });
   },
 
+  deleteList(list) {
+    list.destroyRecord();
+  },
+
   actions: {
     addList() {
-      let list = this.store.createRecord('list');
-
-      return list;
+      this.store.createRecord('list');
     }
   }
 });

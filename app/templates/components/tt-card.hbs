@@ -8,7 +8,7 @@
 {{#if card.isNew}}
   {{input placeholder="Title" classNameBindings=":card-title-inline-input card.invalid:invalid" value=card.title}}
   <br>
-  <button {{action "save"}}>Save</button>
+  <button class="save-btn" {{action "save"}}>Save</button>
   <a href="#" {{action "cancelCreate"}} class="cancel">cancel</a>
 {{else}}
   <a href="#" {{action "edit"}}>{{card.title}}</a>
