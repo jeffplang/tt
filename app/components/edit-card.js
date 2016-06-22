@@ -8,7 +8,10 @@ export default Ember.Component.extend({
   title: computed.oneWay('card.title'),
   description: computed.oneWay('card.description'),
 
+  hasTriedSave: false,
   isConfirmingDelete: false,
+
+  invalid: computed.and('hasTriedSave', 'card.invalid'),
 
   actions: {
     update() {
@@ -16,6 +19,7 @@ export default Ember.Component.extend({
       let description = this.get('description');
 
       this.get('update')({ title, description });
+      this.set('hasTriedSave', true);
     },
 
     delete() {
