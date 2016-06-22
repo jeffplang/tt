@@ -1,12 +1,24 @@
 import { moduleForModel, test } from 'ember-qunit';
+import { make, manualSetup } from 'ember-data-factory-guy';
 
 moduleForModel('card', 'Unit | Model | card', {
-  // Specify the other units that are required for this test.
-  needs: ['model:list']
+  needs: ['model:list'],
+
+  setup() {
+    manualSetup(this.container);
+  }
 });
 
 test('it exists', function(assert) {
   let model = this.subject();
   // let store = this.store();
   assert.ok(!!model);
+});
+
+test('it will not save without a title', function(assert) {
+  let card = make('list', { title: '' });
+
+  card.save();
+
+  assert.equal(card.get('invalid'), true);
 });
